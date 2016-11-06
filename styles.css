@@ -19,6 +19,17 @@ body {
   margin: 0 !important;
 }
 
+#contact-info li.address:before {
+  content: '\ffed';
+  margin-right: 0.5em;
+}
+
+#contact-info li {
+  float: left;
+  display: block;
+  padding: 0.5em;
+}
+
 .thumbnail {
   width: 140px;
   line-height: 140px !important;

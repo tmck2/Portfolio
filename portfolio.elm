@@ -189,9 +189,28 @@ viewFilters ({ filter } as model) =
         ]
 
 
+viewFollowButton =
+    a
+        [ Attr.href "https://twitter.com/tony_mckinney"
+        , Attr.class "twitter-follow-button"
+        , Attr.attribute "data-show-count" "false"
+        ]
+        [ text "Follow @tony_mckinney" ]
+
+
+viewAddress =
+    List.map (\str -> li [ Attr.class "address" ] [ text str ]) [ "2303 Meadow Village Dr.", "Columbus, OH", "43235", "606-939-2503" ]
+
+
+viewContactInfo =
+    ul [ Attr.id "contact-info" ] <| li [] [ viewFollowButton ] :: viewAddress
+
+
 view model =
     div []
-        [ div [ Attr.id "title-container" ]
+        [ div [ style [ ( "float", "right" ) ] ]
+            [ div [] [ viewContactInfo ] ]
+        , div [ Attr.id "title-container" ]
             [ h1 [] [ text "Anthony McKinney" ]
             , h2 [] [ text "Portfolio" ]
             ]
