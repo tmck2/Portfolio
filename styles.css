@@ -1,0 +1,36 @@
+body {
+  background-color: #333 !important;
+  color: #fff !important;
+}
+
+#portfolio-container {
+  background-color: #fff;
+  color: #000;
+  padding: 25px;
+  background-color: #eee;
+}
+
+#title-container {
+  margin-bottom:30px;
+}
+
+#title-container h1, h2 {
+  line-height: 1.4;
+  margin: 0 !important;
+}
+
+.thumbnail {
+  width: 140px;
+  line-height: 140px !important;
+  text-align: center;
+}
+
+.glyphicon {
+  margin: 0px 5px 0px 5px;
+}
+
+.media {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}

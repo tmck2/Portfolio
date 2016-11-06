@@ -103,13 +103,7 @@ viewImage title image =
     Maybe.withDefault
         (div
             [ Attr.class "media-object thumbnail"
-            , style
-                [ ( "width", "140px" )
-                , ( "height", "140px" )
-                , ( "line-height", "140px" )
-                , ( "text-align", "center" )
-                , ( "background-color", "rgb(235, 235, 235)" )
-                ]
+            , style [ ( "background-color", "rgb(235, 235, 235)" ) ]
             ]
             [ div [ Attr.style [ ( "font-size", "140px" ) ] ]
                 [ text (String.left 1 title) ]
@@ -121,7 +115,14 @@ viewImage title image =
 
 viewLink link =
     Maybe.withDefault notVisible <|
-        Maybe.map (\url -> a [ href url ] [ text "Link" ]) link
+        Maybe.map
+            (\url ->
+                a [ href url, Attr.class "btn btn-primary", Attr.target "_blank" ]
+                    [ span [ Attr.class "glyphicon glyphicon-link" ] []
+                    , text "Link"
+                    ]
+            )
+            link
 
 
 joinList : String -> List String -> String
@@ -190,10 +191,13 @@ viewFilters ({ filter } as model) =
 
 view model =
     div []
-        [ h1 [] [ text "Portfolio" ]
+        [ div [ Attr.id "title-container" ]
+            [ h1 [] [ text "Anthony McKinney" ]
+            , h2 [] [ text "Portfolio" ]
+            ]
         , div [ Attr.class "row" ]
             [ div [ Attr.class "col-md-2" ] [ viewFilters model ]
-            , div [ Attr.class "col-md-10" ]
+            , div [ Attr.id "portfolio-container", Attr.class "col-md-10" ]
                 (model.portfolioEntries
                     |> filterEntries model.filter
                     |> List.map viewEntry
