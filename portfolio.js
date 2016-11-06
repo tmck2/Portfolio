@@ -9984,30 +9984,64 @@ var _user$project$Portfolio$joinList = F2(
 				'',
 				lst));
 	});
+var _user$project$Portfolio$viewImage = F2(
+	function (title, image) {
+		return A2(
+			_elm_lang$core$Maybe$withDefault,
+			A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('media-object thumbnail'),
+						_elm_lang$html$Html_Attributes$style(
+						_elm_lang$core$Native_List.fromArray(
+							[
+								{ctor: '_Tuple2', _0: 'width', _1: '140px'},
+								{ctor: '_Tuple2', _0: 'height', _1: '140px'},
+								{ctor: '_Tuple2', _0: 'line-height', _1: '140px'},
+								{ctor: '_Tuple2', _0: 'text-align', _1: 'center'},
+								{ctor: '_Tuple2', _0: 'background-color', _1: 'rgb(235, 235, 235)'}
+							]))
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$style(
+								_elm_lang$core$Native_List.fromArray(
+									[
+										{ctor: '_Tuple2', _0: 'font-size', _1: '140px'}
+									]))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text(
+								A2(_elm_lang$core$String$left, 1, title))
+							]))
+					])),
+			A2(
+				_elm_lang$core$Maybe$map,
+				function (url) {
+					return A2(
+						_elm_lang$html$Html$img,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$src(url),
+								_elm_lang$html$Html_Attributes$class('media-object thumbnail'),
+								_elm_lang$html$Html_Attributes$style(
+								_elm_lang$core$Native_List.fromArray(
+									[
+										{ctor: '_Tuple2', _0: 'width', _1: '140px'}
+									]))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[]));
+				},
+				image));
+	});
 var _user$project$Portfolio$notVisible = _elm_lang$html$Html$text('');
-var _user$project$Portfolio$viewImage = function (image) {
-	return A2(
-		_elm_lang$core$Maybe$withDefault,
-		_user$project$Portfolio$notVisible,
-		A2(
-			_elm_lang$core$Maybe$map,
-			function (url) {
-				return A2(
-					_elm_lang$html$Html$img,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$src(url),
-							_elm_lang$html$Html_Attributes$style(
-							_elm_lang$core$Native_List.fromArray(
-								[
-									{ctor: '_Tuple2', _0: 'width', _1: '150px'}
-								]))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[]));
-			},
-			image));
-};
 var _user$project$Portfolio$viewLink = function (link) {
 	return A2(
 		_elm_lang$core$Maybe$withDefault,
@@ -10032,66 +10066,88 @@ var _user$project$Portfolio$viewEntry = function (entry) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
-			[]),
+			[
+				_elm_lang$html$Html_Attributes$class('media')
+			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
 				A2(
-				_elm_lang$html$Html$h2,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
+				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text(entry.title)
+						_elm_lang$html$Html_Attributes$class('media-left')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_user$project$Portfolio$viewImage, entry.title, entry.picture)
 					])),
 				A2(
 				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text(
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							'Architecture: ',
-							A2(_user$project$Portfolio$joinList, ', ', entry.architecture)))
-					])),
-				A2(
-				_elm_lang$html$Html$div,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text(
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							'Technologies: ',
-							A2(_user$project$Portfolio$joinList, ', ', entry.technologies)))
-					])),
-				A2(
-				_elm_lang$html$Html$div,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_user$project$Portfolio$viewLink(entry.link)
-					])),
-				A2(
-				_elm_lang$html$Html$div,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
+						_elm_lang$html$Html_Attributes$class('media-body')
+					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
-						_elm_lang$html$Html$h3,
+						_elm_lang$html$Html$h4,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('media-heading')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text(entry.title)
+							])),
+						A2(
+						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
 							[]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Description:')
+								_elm_lang$html$Html$text(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									'Architecture: ',
+									A2(_user$project$Portfolio$joinList, ', ', entry.architecture)))
 							])),
-						_user$project$Portfolio$viewImage(entry.picture)
-					])),
-				_elm_lang$html$Html$text(entry.description)
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									'Technologies: ',
+									A2(_user$project$Portfolio$joinList, ', ', entry.technologies)))
+							])),
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_user$project$Portfolio$viewLink(entry.link)
+							])),
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$h3,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Description:')
+									]))
+							])),
+						_elm_lang$html$Html$text(entry.description)
+					]))
 			]));
 };
 var _user$project$Portfolio$update = F2(

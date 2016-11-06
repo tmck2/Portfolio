@@ -99,9 +99,24 @@ notVisible =
     text ""
 
 
-viewImage image =
-    Maybe.withDefault notVisible <|
-        Maybe.map (\url -> img [ src url, style [ ( "width", "150px" ) ] ] []) image
+viewImage title image =
+    Maybe.withDefault
+        (div
+            [ Attr.class "media-object thumbnail"
+            , style
+                [ ( "width", "140px" )
+                , ( "height", "140px" )
+                , ( "line-height", "140px" )
+                , ( "text-align", "center" )
+                , ( "background-color", "rgb(235, 235, 235)" )
+                ]
+            ]
+            [ div [ Attr.style [ ( "font-size", "140px" ) ] ]
+                [ text (String.left 1 title) ]
+            ]
+        )
+    <|
+        Maybe.map (\url -> img [ src url, Attr.class "media-object thumbnail", style [ ( "width", "140px" ) ] ] []) image
 
 
 viewLink link =
@@ -116,19 +131,21 @@ joinList sep lst =
 
 
 viewEntry entry =
-    div []
-        [ h2 []
-            [ text entry.title ]
-        , div []
-            [ text <| "Architecture: " ++ joinList ", " entry.architecture ]
-        , div []
-            [ text <| "Technologies: " ++ joinList ", " entry.technologies ]
-        , div [] [ viewLink entry.link ]
-        , div []
-            [ h3 [] [ text "Description:" ]
-            , viewImage entry.picture
+    div [ Attr.class "media" ]
+        [ div [ Attr.class "media-left" ]
+            [ viewImage entry.title entry.picture ]
+        , div [ Attr.class "media-body" ]
+            [ h4 [ Attr.class "media-heading" ]
+                [ text entry.title ]
+            , div []
+                [ text <| "Architecture: " ++ joinList ", " entry.architecture ]
+            , div []
+                [ text <| "Technologies: " ++ joinList ", " entry.technologies ]
+            , div [] [ viewLink entry.link ]
+            , div []
+                [ h3 [] [ text "Description:" ] ]
+            , text entry.description
             ]
-        , text entry.description
         ]
 
 
