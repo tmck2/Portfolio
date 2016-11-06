@@ -1,0 +1,106 @@
+[
+    {
+        "title": "Bidavilla",
+        "picture": null,
+        "architecture": ["WebForms"],
+        "technologies": ["C#", ".NET", "HTML", "Javascript", "MySQL", "ADO.NET"],
+        "link": null,
+        "description": "Owners list their vacation rentals online. Property features could be specified for rental (e.g. number of rooms, allows pets, etc.). Renters then could search properties based on keywords and/or specific features."
+    },
+    {
+        "title": "Dog Hunts",
+        "picture": null,
+        "architecture": ["WebForms"],
+        "technologies": ["VB.NET", "HTML", "Javascript", "SQL Server", "ADO.NET"],
+        "link": null,
+        "description": "Craigs-list clone. Sellers list property. Challenging because different categories of items had different properties (e.g. car make).  Buyers could search listings and contact owners about them through the site to protect people&apos;s privacy."
+    },
+    {
+        "title": "Mobile Lumber Yard Application",
+        "picture": null,
+        "architecture": ["Mobile .NET"],
+        "technologies": ["VB.NET", "SQL Server"],
+        "link": null,
+        "description": "Converting mobile COBOL app to .NET."
+    },
+    {
+        "title": "Delinquent Property Tax Inquiry Web Application",
+        "picture": null,
+        "architecture": ["WebForms"],
+        "technologies": ["C#", "HTML", "Javascript", "SQL Server", "ADO.NET"],
+        "link": null,
+        "description": "Created application that allowed users to look up delinquent tax records in Boyd County. Integrated PayPal to allow users to pay for lookups."
+    },
+    {
+        "title": "Evidence Locker",
+        "picture": null,
+        "architecture": ["WebForms"],
+        "technologies": ["C#", ".NET", "HTML", "Javascript", "jQuery", "MySQL", "ADO.NET"],
+        "link": null,
+        "description": "Developed and maintained Evidence Locker intranet application for the Boyd County Sheriff&apos;s Office to allow photos and video to be uploaded and managed."
+    },
+    {
+        "title": "United Way of Northeastern Kentucky",
+        "picture": null,
+        "architecture": ["PHP"],
+        "technologies": ["PHP", "Flash", "HTML", "Javascript", "jQuery"],
+        "link": null,
+        "description": "Redesigned and maintained site for the United Way. Created simple flash application to show donation goals on a thermometer."
+    },
+    {
+        "title": "E-commerce Sites",
+        "picture": null,
+        "architecture": ["OS Commerce"],
+        "technologies": ["PHP", "HTML", "Javascript", "MySQL"],
+        "link": null,
+        "description": "Configured and deployed multiple OS Commerce-based applications for clients. Created custom modules for payment gateways and shipping discounts."
+    },
+    {
+        "title": "Joomla CMS Sites",
+        "picture": null,
+        "architecture": ["Joomla"],
+        "technologies": ["PHP", "MySQL", "HTML", "Javascript"],
+        "link": null,
+        "description": "Designed, created, and deployed CMS sites for various clients using Joomla."
+    },
+    {
+        "title": "PHP Consulting",
+        "picture": null,
+        "architecture": ["PHP"],
+        "technologies": ["PHP", "MySQL", "HTML", "Javascript", "jQuery"],
+        "link": null,
+        "description": "Diagnosed and corrected problems with various PHP web applications including some single page apps."
+    },
+    {
+        "title": "Online Voucher Processing System",
+        "picture": null,
+        "architecture": ["WebForms"],
+        "technologies": ["C#", ".NET", "HTML", "Javascript", "jQuery", "SQL Server", "WCF", "Entity Framework"],
+        "link": null,
+        "description": "Created web application for public defenders to enter information about cases they worked on such as expenses and services provided. This information is then uploaded to the state mainframe so that payment can be remitted to them."
+    },
+    {
+        "title": "Multi-tenant Box Office Ticketing Application",
+        "picture": "img/fsu.jpg",
+        "architecture": ["WebForms"],
+        "technologies": ["C#", ".NET", "HTML", "Javascript", "WCF", "SQL Server", "Entity Framework"],
+        "link": null,
+        "description": "Box office ticketing application that allowed events with multiple showings to be created. Events can either be general admission with a set number of tickets or assigned seating. For assigned seating shows, users can pick seats from the seating selection page which was created using jQuery and Javascript."
+    },
+    {
+        "title": "West Virginia State Police Sex Offender Registry",
+        "picture": "img/WVSP-Patch.png",
+        "architecture": ["WebForms","MVC"],
+        "technologies": ["C#",".NET","HTML","Javascript","jQuery","WCF","SQL Server","Web API"],
+        "link": "https://apps.wv.gov/statepolice/sexoffender",
+        "description": "Web application that allows people to search for registered sex offenders in the state of West Virginia. The client portion of the application was created using ASP.NET MVC and has a responsive design allowing it to scale from desktop all the way down to phone. A WebForms-based Admin app allows officers to update information using asynchronous calls through jQuery. The admin app also included More exhaustive search functionality that allows search based on car make, model, partial license plate numbers, etc. State police could also generate reports of sex offenders for counties to support their operations."
+    },
+    {
+        "title": "DHHR Program Plan Reporting System",
+        "picture": null,
+        "architecture": ["MVC"],
+        "technologies": ["C#", ".NET", "HTML", "Javascript", "jQuery", "Backbone", "DevExpress", "Web API", "SQL Server", "Entity Framework"],
+        "link": null,
+        "description": "Large-scale web application that allows local health departments to file their program plans with the DHHR. Admin application that allows review and approval of plans. Custom questionnaire engine that allowed forms to be created from the database with validation.  Custom wizard engine that allowed navigation forward and backward as well as by selecting individual tabs."
+    }
+]
