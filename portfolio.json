@@ -102,5 +102,13 @@
         "technologies": ["C#", ".NET", "HTML", "Javascript", "jQuery", "Backbone", "DevExpress", "Web API", "SQL Server", "Entity Framework"],
         "link": null,
         "description": "Large-scale web application that allows local health departments to file their program plans with the DHHR. Admin application that allows review and approval of plans. Custom questionnaire engine that allowed forms to be created from the database with validation.  Custom wizard engine that allowed navigation forward and backward as well as by selecting individual tabs."
+    },
+    {
+      "title": "Grange Insurance",
+      "picture": null,
+      "architecture": ["MVC", "WebForms"],
+      "technologies": ["C#", "F#", "SSIS", ".NET", "HTML", "Javascript", "jQuery", "Knockout", "Web API", "WCF", "SQL Server", "Entity Framework", "VB6"],
+      "link": null,
+      "description": "Large-scale web application that allows insurance agents to quote policies. Worked on the entire stack from the front end to the back end. I especially enjoyed working on the F# rating engine."
     }
 ]

@@ -1,10 +1,10 @@
 module Portfolio exposing (..)
 
-import Html exposing (div, text, h1, img, a, select, option)
-import Html.Attributes exposing (src, href)
+import Html exposing (..)
+import Html.Attributes as Attr exposing (src, href, style, value)
 import Html.Events exposing (onInput)
 import Html.App as App
-import Json.Decode as Decode exposing (..)
+import Json.Decode as Decode exposing (string, list, (:=), maybe, object6)
 import Http
 import Task
 import String
@@ -26,18 +26,23 @@ type alias PortfolioEntry =
 
 type alias Model =
     { portfolioEntries : List PortfolioEntry
-    , filter : String
+    , filter : ( String, String )
     }
+
+
+type FilterId
+    = ArchitectureFilter
+    | TechnologyFilter
 
 
 type Msg
     = PortfolioRetrieved (List PortfolioEntry)
     | PortfolioRetrievalError Http.Error
-    | FilterChanged String
+    | FilterChanged FilterId String
 
 
 init =
-    ( { portfolioEntries = [], filter = "All" }
+    ( { portfolioEntries = [], filter = ( "All", "All" ) }
     , Task.perform PortfolioRetrievalError PortfolioRetrieved (Http.get portfolioDecoder "portfolio.json")
     )
 
@@ -77,21 +82,30 @@ update msg model =
         PortfolioRetrievalError error ->
             ( model, Cmd.none )
 
-        FilterChanged filter ->
-            ( { model | filter = filter }, Cmd.none )
+        FilterChanged id str ->
+            case id of
+                ArchitectureFilter ->
+                    ( { model | filter = ( str, "All" ) }, Cmd.none )
+
+                TechnologyFilter ->
+                    ( { model | filter = ( "All", str ) }, Cmd.none )
 
 
 
 -- VIEW
 
 
+notVisible =
+    text ""
+
+
 viewImage image =
-    Maybe.withDefault (text "") <|
-        Maybe.map (\url -> img [ src url ] []) image
+    Maybe.withDefault notVisible <|
+        Maybe.map (\url -> img [ src url, style [ ( "width", "150px" ) ] ] []) image
 
 
 viewLink link =
-    Maybe.withDefault (text "") <|
+    Maybe.withDefault notVisible <|
         Maybe.map (\url -> a [ href url ] [ text "Link" ]) link
 
 
@@ -103,41 +117,71 @@ joinList sep lst =
 
 viewEntry entry =
     div []
-        [ h1 []
+        [ h2 []
             [ text entry.title ]
         , div []
             [ text <| "Architecture: " ++ joinList ", " entry.architecture ]
         , div []
             [ text <| "Technologies: " ++ joinList ", " entry.technologies ]
         , div [] [ viewLink entry.link ]
-        , div [] [ viewImage entry.picture ]
+        , div []
+            [ h3 [] [ text "Description:" ]
+            , viewImage entry.picture
+            ]
         , text entry.description
         ]
 
 
-filterEntries technology entries =
-    if technology == "All" then
-        entries
-    else
-        entries |> List.filter (\entry -> List.any (\str -> str == technology) entry.technologies)
+filterEntries (( archFilter, techFilter ) as technology) entries =
+    entries
+        |> List.filter
+            (\entry ->
+                List.any (\str -> (str == techFilter || techFilter == "All")) entry.technologies
+                    && List.any (\str -> (str == archFilter || archFilter == "All")) entry.architecture
+            )
+
+
+viewSelect labelText onInputMessage selectedValue list =
+    div [ Attr.class "form-group" ]
+        [ label [] [ text labelText ]
+        , select
+            [ Attr.class "form-control"
+            , onInput onInputMessage
+            , Attr.value selectedValue
+            ]
+            ("All" :: list |> List.map (\str -> option [] [ text str ]))
+        ]
+
+
+uniqueConcatMap projection list =
+    list |> List.map projection |> List.concat |> unique
+
+
+viewFilters ({ filter } as model) =
+    form []
+        [ h2 [] [ text "Filters" ]
+        , viewSelect "Architecture"
+            (FilterChanged ArchitectureFilter)
+            (fst filter)
+            (uniqueConcatMap (\entry -> entry.architecture) model.portfolioEntries)
+        , viewSelect "Technology"
+            (FilterChanged TechnologyFilter)
+            (snd filter)
+            (uniqueConcatMap (\entry -> entry.technologies) model.portfolioEntries)
+        ]
 
 
 view model =
     div []
-        [ select [ onInput FilterChanged ]
-            ([ "All" ]
-                :: List.map
-                    (\entry -> entry.technologies)
-                    model.portfolioEntries
-                |> List.concat
-                |> unique
-                |> List.map (\str -> option [] [ text str ])
-            )
-        , div []
-            (model.portfolioEntries
-                |> filterEntries model.filter
-                |> List.map viewEntry
-            )
+        [ h1 [] [ text "Portfolio" ]
+        , div [ Attr.class "row" ]
+            [ div [ Attr.class "col-md-2" ] [ viewFilters model ]
+            , div [ Attr.class "col-md-10" ]
+                (model.portfolioEntries
+                    |> filterEntries model.filter
+                    |> List.map viewEntry
+                )
+            ]
         ]
 
 
