@@ -9,6 +9,8 @@ import Http
 import Task
 import String
 import List.Extra exposing (unique)
+import Color
+import Random
 
 
 -- MODEL
@@ -70,6 +72,11 @@ portfolioDecoder =
     list entryDecoder
 
 
+rgb : Random.Generator Color.Color
+rgb =
+    Random.map3 Color.rgb (Random.int 50 100) (Random.int 0 100) (Random.int 50 100)
+
+
 
 -- UPDATE
 
@@ -99,20 +106,6 @@ notVisible =
     text ""
 
 
-viewImage title image =
-    Maybe.withDefault
-        (div
-            [ Attr.class "media-object thumbnail"
-            , style [ ( "background-color", "rgb(235, 235, 235)" ) ]
-            ]
-            [ div [ Attr.style [ ( "font-size", "140px" ) ] ]
-                [ text (String.left 1 title) ]
-            ]
-        )
-    <|
-        Maybe.map (\url -> img [ src url, Attr.class "media-object thumbnail", style [ ( "width", "140px" ) ] ] []) image
-
-
 viewLink link =
     Maybe.withDefault notVisible <|
         Maybe.map
@@ -131,26 +124,7 @@ joinList sep lst =
         List.foldl (\str acc -> acc ++ sep ++ str) "" lst
 
 
-viewEntry entry =
-    div [ Attr.class "media" ]
-        [ div [ Attr.class "media-left" ]
-            [ viewImage entry.title entry.picture ]
-        , div [ Attr.class "media-body" ]
-            [ h4 [ Attr.class "media-heading" ]
-                [ text entry.title ]
-            , div []
-                [ text <| "Architecture: " ++ joinList ", " entry.architecture ]
-            , div []
-                [ text <| "Technologies: " ++ joinList ", " entry.technologies ]
-            , div [] [ viewLink entry.link ]
-            , div []
-                [ h3 [] [ text "Description:" ] ]
-            , text entry.description
-            ]
-        ]
-
-
-filterEntries (( archFilter, techFilter ) as technology) entries =
+filterEntries ( archFilter, techFilter ) entries =
     entries
         |> List.filter
             (\entry ->
@@ -206,6 +180,55 @@ viewContactInfo =
     ul [ Attr.id "contact-info" ] <| li [] [ viewFollowButton ] :: viewAddress
 
 
+viewImage { red, green, blue } title image =
+    Maybe.withDefault
+        (div
+            [ Attr.class "media-object thumbnail"
+            , style
+                [ ( "color", "#fff" )
+                , ( "background-color", "rgb(" ++ joinList "," (List.map toString [ red, green, blue ]) ++ ")" )
+                ]
+            ]
+            [ div [ Attr.style [ ( "font-size", "140px" ) ] ]
+                [ text (String.left 1 title) ]
+            ]
+        )
+    <|
+        Maybe.map (\url -> img [ src url, Attr.class "media-object thumbnail", style [ ( "width", "140px" ) ] ] []) image
+
+
+viewEntry color entry =
+    div [ Attr.class "media" ]
+        [ div [ Attr.class "media-left" ]
+            [ viewImage (Color.toRgb color) entry.title entry.picture ]
+        , div [ Attr.class "media-body" ]
+            [ h4 [ Attr.class "media-heading" ]
+                [ text entry.title ]
+            , div []
+                [ text <| "Architecture: " ++ joinList ", " entry.architecture ]
+            , div []
+                [ text <| "Technologies: " ++ joinList ", " entry.technologies ]
+            , div [] [ viewLink entry.link ]
+            , div []
+                [ h3 [] [ text "Description:" ] ]
+            , text entry.description
+            ]
+        ]
+
+
+viewEntries seed entries =
+    case entries of
+        hd :: tl ->
+            let
+                ( nextColor, seed ) =
+                    Random.step rgb seed
+            in
+                viewEntry nextColor hd :: viewEntries seed tl
+
+        [] ->
+            []
+
+
 view model =
     div []
         [ div [ style [ ( "float", "right" ) ] ]
@@ -217,10 +240,7 @@ view model =
         , div [ Attr.class "row" ]
             [ div [ Attr.class "col-md-2" ] [ viewFilters model ]
             , div [ Attr.id "portfolio-container", Attr.class "col-md-10" ]
-                (model.portfolioEntries
-                    |> filterEntries model.filter
-                    |> List.map viewEntry
-                )
+                (viewEntries (Random.initialSeed 123) <| filterEntries model.filter model.portfolioEntries)
             ]
         ]
 
