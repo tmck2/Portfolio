@@ -1,12 +1,14 @@
 module Portfolio exposing (..)
 
-import Html exposing (div, text, h1, img, a, select)
+import Html exposing (div, text, h1, img, a, select, option)
 import Html.Attributes exposing (src, href)
+import Html.Events exposing (onInput)
 import Html.App as App
 import Json.Decode as Decode exposing (..)
 import Http
 import Task
 import String
+import List.Extra exposing (unique)
 
 
 -- MODEL
@@ -24,16 +26,18 @@ type alias PortfolioEntry =
 
 type alias Model =
     { portfolioEntries : List PortfolioEntry
+    , filter : String
     }
 
 
 type Msg
     = PortfolioRetrieved (List PortfolioEntry)
     | PortfolioRetrievalError Http.Error
+    | FilterChanged String
 
 
 init =
-    ( { portfolioEntries = [] }
+    ( { portfolioEntries = [], filter = "All" }
     , Task.perform PortfolioRetrievalError PortfolioRetrieved (Http.get portfolioDecoder "portfolio.json")
     )
 
@@ -73,6 +77,9 @@ update msg model =
         PortfolioRetrievalError error ->
             ( model, Cmd.none )
 
+        FilterChanged filter ->
+            ( { model | filter = filter }, Cmd.none )
+
 
 
 -- VIEW
@@ -108,10 +115,29 @@ viewEntry entry =
         ]
 
 
+filterEntries technology entries =
+    if technology == "All" then
+        entries
+    else
+        entries |> List.filter (\entry -> List.any (\str -> str == technology) entry.technologies)
+
+
 view model =
     div []
-        [ select [] []
-        , div [] <| List.map viewEntry model.portfolioEntries
+        [ select [ onInput FilterChanged ]
+            ([ "All" ]
+                :: List.map
+                    (\entry -> entry.technologies)
+                    model.portfolioEntries
+                |> List.concat
+                |> unique
+                |> List.map (\str -> option [] [ text str ])
+            )
+        , div []
+            (model.portfolioEntries
+                |> filterEntries model.filter
+                |> List.map viewEntry
+            )
         ]
 
 
