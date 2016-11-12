@@ -74,7 +74,7 @@ portfolioDecoder =
 
 rgb : Random.Generator Color.Color
 rgb =
-    Random.map3 Color.rgb (Random.int 50 100) (Random.int 0 100) (Random.int 50 100)
+    Random.map3 Color.hsl (Random.map degrees (Random.float 250 266)) (Random.float 0.25 0.75) (Random.float 0.25 0.35)
 
 
 
@@ -189,8 +189,7 @@ viewImage { red, green, blue } title image =
                 , ( "background-color", "rgb(" ++ joinList "," (List.map toString [ red, green, blue ]) ++ ")" )
                 ]
             ]
-            [ div [ Attr.style [ ( "font-size", "140px" ) ] ]
-                [ text (String.left 1 title) ]
+            [ div [] [ text (String.left 1 title) ]
             ]
         )
     <|
@@ -202,16 +201,17 @@ viewEntry color entry =
         [ div [ Attr.class "media-left" ]
             [ viewImage (Color.toRgb color) entry.title entry.picture ]
         , div [ Attr.class "media-body" ]
-            [ h4 [ Attr.class "media-heading" ]
+            [ h3 [ Attr.class "media-heading" ]
                 [ text entry.title ]
             , div []
                 [ text <| "Architecture: " ++ joinList ", " entry.architecture ]
             , div []
                 [ text <| "Technologies: " ++ joinList ", " entry.technologies ]
             , div [] [ viewLink entry.link ]
-            , div []
-                [ h3 [] [ text "Description:" ] ]
-            , text entry.description
+            , br [] []
+            , p []
+                [ text entry.description
+                ]
             ]
         ]
 

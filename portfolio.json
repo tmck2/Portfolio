@@ -1,7 +1,7 @@
 [
     {
         "title": "Bidavilla",
-        "picture": null,
+        "picture": "img/villa-thumb.jpeg",
         "architecture": ["WebForms"],
         "technologies": ["C#", ".NET", "HTML", "Javascript", "MySQL", "ADO.NET"],
         "link": null,
@@ -13,7 +13,7 @@
         "architecture": ["WebForms"],
         "technologies": ["VB.NET", "HTML", "Javascript", "SQL Server", "ADO.NET"],
         "link": null,
-        "description": "Craigs-list clone. Sellers list property. Challenging because different categories of items had different properties (e.g. car make).  Buyers could search listings and contact owners about them through the site to protect people&apos;s privacy."
+        "description": "Craigs-list clone. Sellers list property. Challenging because different categories of items had different properties (e.g. car make).  Buyers could search listings and contact owners about them through the site to protect the user's privacy."
     },
     {
         "title": "Mobile Lumber Yard Application",
@@ -80,7 +80,7 @@
         "description": "Created web application for public defenders to enter information about cases they worked on such as expenses and services provided. This information is then uploaded to the state mainframe so that payment can be remitted to them."
     },
     {
-        "title": "Multi-tenant Box Office Ticketing Application",
+        "title": "Box Office Ticketing Application",
         "picture": "img/fsu.jpg",
         "architecture": ["WebForms"],
         "technologies": ["C#", ".NET", "HTML", "Javascript", "WCF", "SQL Server", "Entity Framework"],
