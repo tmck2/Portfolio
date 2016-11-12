@@ -1,5 +1,13 @@
 [
     {
+      "title": "Breakin",
+      "picture": "img/breakin-thumb.png",
+      "architecture": ["Elm"],
+      "technologies": ["Elm", "HTML", "Javascript", "CSS"],
+      "link": "http://github.com/tmck2/breakin",
+      "description": "This is a game I wrote to learn the Elm programming language. I enjoy programming functionally, particulary in functional languages."
+    },
+    {
         "title": "Bidavilla",
         "picture": "img/villa-thumb.jpeg",
         "architecture": ["WebForms"],
@@ -24,6 +32,14 @@
         "description": "Converting mobile COBOL app to .NET."
     },
     {
+        "title": "Mobile Forestry Application",
+        "picture": null,
+        "architecture": ["Mobile .NET"],
+        "technologies": ["Windows CE", "Embedded Visual C++"],
+        "link": null,
+        "description": "Worked on mobile data collection app for the Forestry Service."
+    },
+    {
         "title": "Delinquent Property Tax Inquiry Web Application",
         "picture": null,
         "architecture": ["WebForms"],
@@ -37,7 +53,7 @@
         "architecture": ["WebForms"],
         "technologies": ["C#", ".NET", "HTML", "Javascript", "jQuery", "MySQL", "ADO.NET"],
         "link": null,
-        "description": "Developed and maintained Evidence Locker intranet application for the Boyd County Sheriff&apos;s Office to allow photos and video to be uploaded and managed."
+        "description": "Developed and maintained Evidence Locker intranet application for the Boyd County Sheriff's Office to allow photos and video to be uploaded and managed."
     },
     {
         "title": "United Way of Northeastern Kentucky",
@@ -107,8 +123,8 @@
       "title": "Grange Insurance",
       "picture": null,
       "architecture": ["MVC", "WebForms"],
-      "technologies": ["C#", "F#", "SSIS", ".NET", "HTML", "Javascript", "jQuery", "Knockout", "Web API", "WCF", "SQL Server", "Entity Framework", "VB6"],
+      "technologies": ["C#", "F#", "SSIS", ".NET", "HTML", "Javascript", "jQuery", "Knockout", "Web API", "WCF", "SQL Server", "Entity Framework", "VB6", "SQL Server"],
       "link": null,
-      "description": "Large-scale web application that allows insurance agents to quote policies. Worked on the entire stack from the front end to the back end. I especially enjoyed working on the F# rating engine."
+      "description": "Large-scale web application that allows insurance agents to quote policies. Worked on the entire stack from the front end to the back end."
     }
 ]
