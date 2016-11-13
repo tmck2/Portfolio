@@ -3,6 +3,26 @@ body {
   color: #eee !important;
 }
 
+address {
+  margin-bottom: 0 !important;
+}
+
+#title {
+  float: left;
+}
+
+#filter-panel {
+  margin-top: 10px;
+}
+
+#long-contact {
+  display: block;
+}
+
+#short-contact {
+  display: none;
+}
+
 #portfolio-container {
   height: 100%;
   overflow-y: scroll;
@@ -14,24 +34,13 @@ body {
   box-shadow: inset 2px 2px 5px 0px rgba(0,0,0,0.75);
 }
 
-#title-container {
-  margin-bottom:30px;
-}
-
 #title-container h1, h2 {
   line-height: 1.4;
   margin: 0 !important;
 }
 
-#contact-info li.address:before {
-  content: '\ffed';
-  margin-right: 0.5em;
-}
-
-#contact-info li {
-  float: left;
-  display: block;
-  padding: 0.5em;
+#contact-info {
+    float: right;
 }
 
 .media-body h3 {
@@ -40,7 +49,7 @@ body {
 }
 
 .thumbnail {
-  width: 140px;
+  width: 140px !important;
   line-height: 140px !important;
   text-align: center;
   border-color: transparent !important;
@@ -49,6 +58,59 @@ body {
   box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.75) !important;
   font-family: 'Berkshire Swash', cursive;
   font-size: 110px;
+}
+
+@media (min-width: 1024px) {
+  #main {
+    margin-top: 1em;
+  }
+}
+
+@media (max-width: 700px) {
+  #title-container {
+    margin-bottom: 1em;
+  }
+  #contact-info {
+    clear: both;
+    float: none;
+  }
+  #long-contact {
+    display: none;
+  }
+  #short-contact {
+    display: block;
+  }
+  #filter-panel {
+    display: none;
+  }
+  #portfolio-container {
+    height: auto;
+    overflow-y: visible;
+  }
+  [id^=twitter-widget] {
+    margin: 3px 0px 0px 0px;
+  }
+  .clear {
+    clear: both;
+  }
+  .thumbnail {
+    width: 100px !important;
+    font-size: 90px;
+  }
+  .form-group {
+    float: left;
+    margin-right: 5px;
+  }
+  h1 {
+    font-size: 2em !important;
+  }
+  h2 {
+    font-size: 1.5em !important;
+  }
+  h3 {
+    font-size: 1.17em !important;
+    margin: 3px 0 0 0 !important;
+  }
 }
 
 .glyphicon {

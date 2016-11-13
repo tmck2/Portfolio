@@ -151,7 +151,7 @@ uniqueConcatMap projection list =
 
 viewFilters ({ filter } as model) =
     form []
-        [ h2 [] [ text "Filters" ]
+        [ h3 [] [ text "Filters" ]
         , viewSelect "Architecture"
             (FilterChanged ArchitectureFilter)
             (fst filter)
@@ -165,7 +165,8 @@ viewFilters ({ filter } as model) =
 
 viewFollowButton =
     a
-        [ Attr.href "https://twitter.com/tony_mckinney"
+        [ Attr.id "twitter-link"
+        , Attr.href "https://twitter.com/tony_mckinney"
         , Attr.class "twitter-follow-button"
         , Attr.attribute "data-show-count" "false"
         ]
@@ -173,11 +174,22 @@ viewFollowButton =
 
 
 viewAddress =
-    List.map (\str -> li [ Attr.class "address" ] [ text str ]) [ "2303 Meadow Village Dr.", "Columbus, OH", "43235", "606-939-2503" ]
+    div []
+        [ address [ Attr.id "long-contact" ]
+            [ text "2303 Meadow Village Dr."
+            , br [] []
+            , text "Columbus, OH 43235"
+            , br [] []
+            , text "☎ 606-939-2503"
+            ]
+        , address [ Attr.id "short-contact" ]
+            [ text "Columbus, OH ☎ 606-939-2503"
+            ]
+        ]
 
 
 viewContactInfo =
-    ul [ Attr.id "contact-info" ] <| li [] [ viewFollowButton ] :: viewAddress
+    div [ Attr.id "contact-info" ] <| viewAddress :: [ viewFollowButton ]
 
 
 viewImage { red, green, blue } title image =
@@ -230,19 +242,31 @@ viewEntries seed entries =
 
 
 view model =
-    div []
-        [ div [ style [ ( "float", "right" ) ] ]
-            [ div [] [ viewContactInfo ] ]
-        , div [ Attr.id "title-container" ]
-            [ h1 [] [ text "Anthony McKinney" ]
-            , h2 [] [ text "Portfolio" ]
+    let
+        entryLists =
+            filterEntries model.filter model.portfolioEntries
+                |> List.indexedMap (,)
+                |> List.partition (\( i, e ) -> i % 2 == 0)
+    in
+        div []
+            [ div [ Attr.id "title-container" ]
+                [ div [ Attr.id "title" ]
+                    [ h1 [] [ text "Anthony McKinney" ]
+                    , h2 [] [ text "Portfolio" ]
+                    ]
+                , viewContactInfo
+                ]
+            , div [ Attr.style [ ( "clear", "both" ) ] ] []
+            , div [ Attr.class "row" ]
+                [ div [ Attr.id "filter-panel", Attr.class "col-md-2" ] [ viewFilters model ]
+                , div [ Attr.id "portfolio-container", Attr.class "col-md-10" ]
+                    [ div [ Attr.class "row" ]
+                        [ div [ Attr.class "col-md-6" ] <| viewEntries (Random.initialSeed 123) (fst entryLists |> List.map snd)
+                        , div [ Attr.class "col-md-6" ] <| viewEntries (Random.initialSeed 124) (snd entryLists |> List.map snd)
+                        ]
+                    ]
+                ]
             ]
-        , div [ Attr.class "row" ]
-            [ div [ Attr.class "col-md-2" ] [ viewFilters model ]
-            , div [ Attr.id "portfolio-container", Attr.class "col-md-10" ]
-                (viewEntries (Random.initialSeed 123) <| filterEntries model.filter model.portfolioEntries)
-            ]
-        ]
 
 
 

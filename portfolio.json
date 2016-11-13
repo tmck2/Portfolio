@@ -1,11 +1,19 @@
 [
     {
-      "title": "Breakin",
-      "picture": "img/breakin-thumb.png",
-      "architecture": ["Elm"],
-      "technologies": ["Elm", "HTML", "Javascript", "CSS"],
-      "link": "http://github.com/tmck2/breakin",
-      "description": "This is a game I wrote to learn the Elm programming language. I enjoy programming functionally, particulary in functional languages."
+        "title": "Breakin",
+        "picture": "img/breakin-thumb.png",
+        "architecture": ["Elm"],
+        "technologies": ["Elm", "HTML", "Javascript", "CSS"],
+        "link": "http://github.com/tmck2/breakin",
+        "description": "This is a game I wrote to learn the Elm programming language. I enjoy programming functionally, particulary in functional languages."
+    },
+    {
+        "title": "Over-engineered Portfolio :)",
+        "picture": null,
+        "architecture": ["Elm"],
+        "technologies": ["Elm", "HTML", "Javascript", "CSS"],
+        "link": null,
+        "description": "What can I say? I love Elm, so I redid my portfolio using it."
     },
     {
         "title": "Bidavilla",
@@ -25,15 +33,15 @@
     },
     {
         "title": "Mobile Lumber Yard Application",
-        "picture": null,
+        "picture": "img/lumber-thumb.jpeg",
         "architecture": ["Mobile .NET"],
-        "technologies": ["VB.NET", "SQL Server"],
+        "technologies": ["VB.NET", "SQL Server", "Windows CE"],
         "link": null,
         "description": "Converting mobile COBOL app to .NET."
     },
     {
-        "title": "Mobile Forestry Application",
-        "picture": null,
+        "title": "Forestry Application",
+        "picture": "img/forest-thumb.jpeg",
         "architecture": ["Mobile .NET"],
         "technologies": ["Windows CE", "Embedded Visual C++"],
         "link": null,
@@ -57,7 +65,7 @@
     },
     {
         "title": "United Way of Northeastern Kentucky",
-        "picture": null,
+        "picture": "img/uway-thumb.png",
         "architecture": ["PHP"],
         "technologies": ["PHP", "Flash", "HTML", "Javascript", "jQuery"],
         "link": null,
@@ -109,7 +117,7 @@
         "architecture": ["WebForms","MVC"],
         "technologies": ["C#",".NET","HTML","Javascript","jQuery","WCF","SQL Server","Web API"],
         "link": "https://apps.wv.gov/statepolice/sexoffender",
-        "description": "Web application that allows people to search for registered sex offenders in the state of West Virginia. The client portion of the application was created using ASP.NET MVC and has a responsive design allowing it to scale from desktop all the way down to phone. A WebForms-based Admin app allows officers to update information using asynchronous calls through jQuery. The admin app also included More exhaustive search functionality that allows search based on car make, model, partial license plate numbers, etc. State police could also generate reports of sex offenders for counties to support their operations."
+        "description": "Responsive web application that allows people to search for registered sex offenders in the state of West Virginia. Admin portion for officers with more advanced search and reporting."
     },
     {
         "title": "DHHR Program Plan Reporting System",
